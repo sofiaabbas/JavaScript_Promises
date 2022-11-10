@@ -15,6 +15,21 @@ function getList() {
   });
 }
 
+const errorParagraph = document.querySelector("#error");
+const ulHobbits = document.querySelector("#list");
+
+getList().then((hobbitsArray) => {
+  console.log(hobbitsArray);
+  for (const hobbit of hobbitsArray){
+    const hobbitLi = document.createElement("li");
+    hobbitLi.textContent = hobbit;
+    ulHobbits.appendChild(hobbitLi);
+  }
+}).catch((failureObject) => {
+  console.log(failureObject);
+  errorParagraph.textContent = `success: ${failureObject.success} &&& message: ${failureObject.message}`;
+})
+
 // TODO: Handle the resolved or rejected states of the promise
 
 // TODO: If the promise resolves with the list of hobbits
